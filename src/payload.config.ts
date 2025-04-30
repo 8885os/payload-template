@@ -13,6 +13,7 @@ import { Header } from './globals/Header'
 import { Components } from './collections/Components'
 import { Pages } from './collections/Pages'
 import { Sidebar } from './globals/Sidebar'
+import { Work } from './collections/Work'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Components, Pages],
+  collections: [Users, Media, Components, Pages, Work],
   globals: [Header, Sidebar],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
