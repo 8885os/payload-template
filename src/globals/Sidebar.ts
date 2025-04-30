@@ -20,9 +20,11 @@ export const Sidebar: GlobalConfig = {
           type: 'upload',
           relationTo: 'media', // Assuming you have a media collection
         },
+        {
+          name: 'link',
+          type: 'text',
+        },
       ],
-      minRows: 2, // Ensure at least 2 social icons are added
-      maxRows: 2, // Limit to only 2 social icons
     },
   ],
 }

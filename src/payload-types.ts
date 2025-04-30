@@ -389,6 +389,7 @@ export interface Sidebar {
   socialIcons?:
     | {
         image?: (number | null) | Media;
+        link?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -422,6 +423,7 @@ export interface SidebarSelect<T extends boolean = true> {
     | T
     | {
         image?: T;
+        link?: T;
         id?: T;
       };
   updatedAt?: T;
