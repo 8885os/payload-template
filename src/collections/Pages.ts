@@ -40,7 +40,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'image',
               type: 'upload',
-              relationTo: 'media', // Assuming you have a media collection
+              relationTo: 'media',
             },
             {
               name: 'button',
