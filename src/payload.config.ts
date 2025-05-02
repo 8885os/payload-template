@@ -10,7 +10,6 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Header } from './globals/Header'
-import { Components } from './collections/Components'
 import { Pages } from './collections/Pages'
 import { Sidebar } from './globals/Sidebar'
 import { Work } from './collections/Work'
@@ -25,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Components, Pages, Work],
+  collections: [Users, Media, Pages, Work],
   globals: [Header, Sidebar],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

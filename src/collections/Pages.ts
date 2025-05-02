@@ -1,5 +1,6 @@
 // src/collections/Pages.ts
 import { CollectionConfig } from 'payload'
+import { Accordion, PageHero, SecondaryHero, WorkTabs } from './PageBlocks'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -24,43 +25,7 @@ export const Pages: CollectionConfig = {
       name: 'layout',
       type: 'blocks',
       required: true,
-      blocks: [
-        {
-          slug: 'hero',
-          fields: [
-            {
-              name: 'heading',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'subheading',
-              type: 'text',
-            },
-            {
-              name: 'image',
-              type: 'upload',
-              relationTo: 'media',
-            },
-            {
-              name: 'button',
-              type: 'group',
-              fields: [
-                {
-                  name: 'label',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'link',
-                  type: 'text',
-                  required: true,
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      blocks: [PageHero, Accordion, SecondaryHero, WorkTabs],
     },
   ],
 }

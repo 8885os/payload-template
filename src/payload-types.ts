@@ -69,7 +69,6 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    components: Component;
     pages: Page;
     work: Work;
     'payload-locked-documents': PayloadLockedDocument;
@@ -80,7 +79,6 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    components: ComponentsSelect<false> | ComponentsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     work: WorkSelect<false> | WorkSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -163,35 +161,63 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "components".
- */
-export interface Component {
-  id: number;
-  name: string;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
   id: number;
   title: string;
   slug?: string | null;
-  layout: {
-    heading: string;
-    subheading?: string | null;
-    image?: (number | null) | Media;
-    button: {
-      label: string;
-      link: string;
-    };
-    id?: string | null;
-    blockName?: string | null;
-    blockType: 'hero';
-  }[];
+  layout: (
+    | {
+        heading: string;
+        subheading?: string | null;
+        image?: (number | null) | Media;
+        button: {
+          label: string;
+          link: string;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'page-hero';
+      }
+    | {
+        items?:
+          | {
+              label: string;
+              content?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'accordion';
+      }
+    | {
+        heading: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'secondaryHero';
+      }
+    | {
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'workTabs';
+      }
+  )[];
   updatedAt: string;
   createdAt: string;
 }
@@ -284,10 +310,6 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'components';
-        value: number | Component;
-      } | null)
-    | ({
         relationTo: 'pages';
         value: number | Page;
       } | null)
@@ -372,16 +394,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "components_select".
- */
-export interface ComponentsSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages_select".
  */
 export interface PagesSelect<T extends boolean = true> {
@@ -390,7 +402,7 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
-        hero?:
+        'page-hero'?:
           | T
           | {
               heading?: T;
@@ -402,6 +414,32 @@ export interface PagesSelect<T extends boolean = true> {
                     label?: T;
                     link?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        accordion?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    label?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        secondaryHero?:
+          | T
+          | {
+              heading?: T;
+              id?: T;
+              blockName?: T;
+            };
+        workTabs?:
+          | T
+          | {
               id?: T;
               blockName?: T;
             };

@@ -9,7 +9,7 @@ export const ImageWithText: Block = {
   ],
 }
 
-export const imageGrid: Block = {
+export const ImageGrid: Block = {
   slug: 'imageGrid',
   fields: [
     {
@@ -22,7 +22,7 @@ export const imageGrid: Block = {
   ],
 }
 
-export const richText: Block = {
+export const RichText: Block = {
   slug: 'richText',
   fields: [
     {
@@ -32,12 +32,12 @@ export const richText: Block = {
   ],
 }
 
-export const hero: Block = {
+export const Hero: Block = {
   slug: 'hero',
   fields: [{ name: 'image', type: 'upload', relationTo: 'media' }],
 }
 
-export const otherProjects: Block = {
+export const OtherProjects: Block = {
   slug: 'otherProjects',
   labels: {
     singular: 'Other Projects',
@@ -55,7 +55,7 @@ export const otherProjects: Block = {
   ],
 }
 
-export const contact: Block = {
+export const Contact: Block = {
   slug: 'contact',
   labels: {
     singular: 'Contact',

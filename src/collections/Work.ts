@@ -1,6 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { contact, hero, imageGrid, ImageWithText, otherProjects, richText } from './WorkBlocks'
-
+import { Contact, ImageGrid, ImageWithText, OtherProjects, RichText, Hero } from './WorkBlocks'
 export const Work: CollectionConfig = {
   slug: 'work',
   labels: {
@@ -29,11 +28,11 @@ export const Work: CollectionConfig = {
       blocks: [
         // Custom blocks below
         ImageWithText,
-        imageGrid,
-        richText,
-        hero,
-        otherProjects,
-        contact,
+        ImageGrid,
+        RichText,
+        Hero,
+        OtherProjects,
+        Contact,
       ],
     },
   ],
