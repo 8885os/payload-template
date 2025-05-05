@@ -6,7 +6,6 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
-
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Header } from './globals/Header'
@@ -17,11 +16,41 @@ import { Work } from './collections/Work'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+import type { CollectionConfig } from 'payload'
+
+export const MyCollection: CollectionConfig = {
+  // ...
+  admin: {
+    // ...
+  },
+  fields: [],
+  slug: '',
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    livePreview: {
+      url: ({ data, collectionConfig }) =>
+        `${process.env.NEXT_APP_URL}/api/preview?collection=${collectionConfig?.slug}&slug=${data.slug}`,
+      collections: ['users', 'media', 'pages', 'work'],
+      breakpoints: [
+        {
+          label: 'Mobile',
+          name: 'mobile',
+          width: 375,
+          height: 667,
+        },
+        {
+          label: 'Tablet',
+          name: 'tablet',
+          width: 768,
+          height: 1024,
+        },
+      ],
     },
   },
   collections: [Users, Media, Pages, Work],

@@ -28,4 +28,11 @@ export const Pages: CollectionConfig = {
       blocks: [PageHero, Accordion, SecondaryHero, WorkTabs],
     },
   ],
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 375,
+      },
+    },
+  },
 }
