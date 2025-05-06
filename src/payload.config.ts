@@ -70,6 +70,6 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
-  cors: ['http://localhost:3000', 'http://localhost:3001'], // Allow Next.js app
-  csrf: ['http://localhost:3000', 'http://localhost:3001'], // Allow Next.js app
+  cors: ['https://payload-cms-dun.vercel.app/', 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
+  csrf: ['https://payload-cms-dun.vercel.app/', 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
 })
