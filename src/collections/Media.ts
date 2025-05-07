@@ -11,6 +11,13 @@ export const Media: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'url',
+      type: 'text',
+      admin: {
+        readOnly: true,
+      },
+    },
   ],
   upload: {
     modifyResponseHeaders({ headers }) {
@@ -19,5 +26,16 @@ export const Media: CollectionConfig = {
       }
       return headers
     },
+  },
+  hooks: {
+    beforeChange: [
+      ({ data, req }) => {
+        // If the blob plugin added a `filename`, construct the Blob URL
+        if (data.filename) {
+          data.url = `${process.env.BLOB_URL}/${data.filename}`
+        }
+        return data
+      },
+    ],
   },
 }
