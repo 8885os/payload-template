@@ -1,6 +1,5 @@
 // storage-adapter-import-placeholder
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -17,6 +16,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 import type { CollectionConfig } from 'payload'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -67,7 +67,16 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
+    vercelBlobStorage({
+      enabled: true, // Optional, defaults to true
+      collections: {
+        [Media.slug]: {
+          prefix: 'media', // Optional: organizes files in a subfolder
+        },
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN, // Vercel Blob token
+      clientUploads: true, // Enable for files >4.5MB
+    }),
     // storage-adapter-placeholder
   ],
   cors: [`${process.env.NEXT_APP_URL}`, 'http://localhost:3000'], // Allow Next.js app
