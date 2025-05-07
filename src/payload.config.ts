@@ -11,12 +11,11 @@ import { Header } from './globals/Header'
 import { Pages } from './collections/Pages'
 import { Sidebar } from './globals/Sidebar'
 import { Work } from './collections/Work'
+import type { CollectionConfig } from 'payload'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
-import type { CollectionConfig } from 'payload'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 export const MyCollection: CollectionConfig = {
   // ...
@@ -70,12 +69,9 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: true, // Optional, defaults to true
       collections: {
-        [Media.slug]: {
-          prefix: 'media', // Optional: organizes files in a subfolder
-        },
+        media: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN, // Vercel Blob token
-      clientUploads: true, // Enable for files >4.5MB
     }),
     // storage-adapter-placeholder
   ],
