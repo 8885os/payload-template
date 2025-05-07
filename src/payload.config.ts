@@ -77,6 +77,6 @@ export default buildConfig({
     }),
     // storage-adapter-placeholder
   ],
-  cors: [`${process.env.NEXT_APP_URL}`, 'http://localhost:3000'], // Allow Next.js app
-  csrf: ['http://localhost:3000', 'http://localhost:3001'], // Allow Next.js app
+  cors: [`${process.env.NEXT_APP_URL}`, 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
+  csrf: [`${process.env.NEXT_APP_URL}`, 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
 })
