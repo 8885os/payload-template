@@ -75,6 +75,6 @@ export default buildConfig({
     }),
     // storage-adapter-placeholder
   ],
-  cors: ['https://payload-cms-dun.vercel.app/', 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
-  csrf: ['https://payload-cms-dun.vercel.app/', 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
+  cors: [`${process.env.NEXT_APP_URL}`, 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
+  csrf: [`${process.env.NEXT_APP_URL}`, 'https://wdc-test-payload.vercel.app/'], // Allow Next.js app
 })
