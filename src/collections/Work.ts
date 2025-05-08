@@ -41,6 +41,7 @@ export const Work: CollectionConfig = {
     read: () => true,
   },
   versions: {
+    maxPerDoc: 10,
     drafts: {
       autosave: {
         interval: 375,
